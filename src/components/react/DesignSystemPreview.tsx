@@ -38,6 +38,7 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
+import { ModeToggle } from './ModeToggle';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -53,6 +54,9 @@ export function DesignSystemPreview() {
 
   return (
     <div className="space-y-12">
+      <div className="flex items-center justify-end">
+        <ModeToggle />
+      </div>
       {/* Colors */}
       <Section title="Colors">
         <div className="grid grid-cols-2 gap-4 sm:grid-cols-4 md:grid-cols-6">
