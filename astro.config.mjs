@@ -8,11 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   site: 'https://melmayan.fr',
   output: 'static',
-  integrations: [
-    react(),
-    mdx(),
-    sitemap(),
-  ],
+  integrations: [react(), mdx(), sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },

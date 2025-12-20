@@ -9,10 +9,12 @@ const projects = defineCollection({
     featured: z.boolean().default(false),
     techStack: z.array(z.string()),
     role: z.string(),
-    links: z.object({
-      demo: z.string().url().optional(),
-      repo: z.string().url().optional(),
-    }).optional(),
+    links: z
+      .object({
+        demo: z.string().url().optional(),
+        repo: z.string().url().optional(),
+      })
+      .optional(),
     image: z.string().optional(),
     publishDate: z.coerce.date(),
   }),
