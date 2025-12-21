@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* global process, console */
 
 /**
  * Error Capture Hook
@@ -9,7 +10,7 @@
  * Usage: node capture-error.mjs <tool_name> <exit_code> <output>
  */
 
-import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { appendFileSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 

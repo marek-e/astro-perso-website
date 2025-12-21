@@ -6,20 +6,20 @@ This project uses shadcn/ui components built on Radix primitives. Components are
 
 ## Available Components
 
-| Component | Type | Context Required | Notes |
-|-----------|------|------------------|-------|
-| Button | Static-safe | No | Can use directly in Astro |
-| Badge | Static-safe | No | Can use directly in Astro |
-| Card | Static-safe | No | Can use directly in Astro |
-| Input | Static-safe | No | Can use directly in Astro |
-| Textarea | Static-safe | No | Can use directly in Astro |
-| Label | Static-safe | No | Can use directly in Astro |
-| Separator | Static-safe | No | Can use directly in Astro |
-| Alert Dialog | **Needs wrapper** | Yes | Wrap in React component |
-| Dropdown Menu | **Needs wrapper** | Yes | Wrap in React component |
-| Select | **Needs wrapper** | Yes | Wrap in React component |
-| Combobox | **Needs wrapper** | Yes | Wrap in React component |
-| Sheet | **Needs wrapper** | Yes | Wrap in React component |
+| Component     | Type              | Context Required | Notes                     |
+| ------------- | ----------------- | ---------------- | ------------------------- |
+| Button        | Static-safe       | No               | Can use directly in Astro |
+| Badge         | Static-safe       | No               | Can use directly in Astro |
+| Card          | Static-safe       | No               | Can use directly in Astro |
+| Input         | Static-safe       | No               | Can use directly in Astro |
+| Textarea      | Static-safe       | No               | Can use directly in Astro |
+| Label         | Static-safe       | No               | Can use directly in Astro |
+| Separator     | Static-safe       | No               | Can use directly in Astro |
+| Alert Dialog  | **Needs wrapper** | Yes              | Wrap in React component   |
+| Dropdown Menu | **Needs wrapper** | Yes              | Wrap in React component   |
+| Select        | **Needs wrapper** | Yes              | Wrap in React component   |
+| Combobox      | **Needs wrapper** | Yes              | Wrap in React component   |
+| Sheet         | **Needs wrapper** | Yes              | Wrap in React component   |
 
 ## Adding New Components
 
@@ -28,6 +28,7 @@ pnpm dlx shadcn@latest add [component-name]
 ```
 
 Example:
+
 ```bash
 pnpm dlx shadcn@latest add accordion
 pnpm dlx shadcn@latest add dialog
@@ -85,9 +86,7 @@ export function DeleteConfirm({ onConfirm, itemName }: DeleteConfirmProps) {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Delete {itemName}?</AlertDialogTitle>
-          <AlertDialogDescription>
-            This action cannot be undone.
-          </AlertDialogDescription>
+          <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
@@ -174,13 +173,13 @@ import { DeleteConfirm } from '@/components/react/DeleteConfirm';
 
 ## Client Directives Reference
 
-| Directive | When to Use |
-|-----------|-------------|
-| `client:load` | Critical interactivity (theme toggle, nav) |
-| `client:visible` | Below-fold content, modals |
-| `client:idle` | Non-critical, after page is idle |
-| `client:media="(...)"` | Responsive (mobile nav) |
-| (none) | Static render only |
+| Directive              | When to Use                                |
+| ---------------------- | ------------------------------------------ |
+| `client:load`          | Critical interactivity (theme toggle, nav) |
+| `client:visible`       | Below-fold content, modals                 |
+| `client:idle`          | Non-critical, after page is idle           |
+| `client:media="(...)"` | Responsive (mobile nav)                    |
+| (none)                 | Static render only                         |
 
 ## Theme Colors
 

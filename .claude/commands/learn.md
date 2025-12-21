@@ -5,6 +5,7 @@ Analyze the current session for mistakes and update documentation to prevent fut
 ### Step 1: Review Session History
 
 Look through the conversation for:
+
 - Build failures and their root causes
 - Lint errors that were fixed
 - Format issues that were corrected
@@ -17,6 +18,7 @@ Look through the conversation for:
 ### Step 2: Categorize Each Mistake
 
 For each issue found, determine the category:
+
 - `build` - Build/compilation failures
 - `lint` - ESLint rule violations
 - `format` - Prettier formatting issues
@@ -29,6 +31,7 @@ For each issue found, determine the category:
 ### Step 3: Document the Lesson
 
 For each mistake, create an entry with:
+
 1. **Date** - Today's date
 2. **Category** - From the list above
 3. **Mistake** - What went wrong
@@ -38,11 +41,19 @@ For each mistake, create an entry with:
 ### Step 4: Update Documentation
 
 1. **Append to `.claude/mistakes.jsonl`:**
+
 ```json
-{"date": "2024-01-15", "category": "component", "mistake": "description", "fix": "solution", "rule": "prevention"}
+{
+  "date": "2024-01-15",
+  "category": "component",
+  "mistake": "description",
+  "fix": "solution",
+  "rule": "prevention"
+}
 ```
 
 2. **Append to `docs/LESSONS.md`:**
+
 ```markdown
 ## YYYY-MM-DD - Brief Title
 
@@ -62,6 +73,7 @@ For each mistake, create an entry with:
 ### Step 5: Summarize
 
 Provide a summary:
+
 - Number of lessons captured
 - Categories affected
 - Any documentation updates made
@@ -91,6 +103,7 @@ Provide a summary:
 ## If No Mistakes Found
 
 If the session had no errors or issues:
+
 - Confirm the session was clean
 - Note any good patterns that were followed
 - Suggest the developer run `/validate` to confirm

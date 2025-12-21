@@ -22,6 +22,7 @@ This is a static-first developer portfolio built with Astro. The architecture pr
 ### Why React Islands?
 
 React is used only for interactive features that require:
+
 - Client-side state management
 - Complex user interactions
 - Third-party React libraries
@@ -124,15 +125,15 @@ Static files in dist/
 
 ## Rendering Modes
 
-| Content Type | Rendering | JavaScript |
-|--------------|-----------|------------|
-| Pages | Static (SSG) | None |
-| Blog posts | Static (SSG) | None |
-| Project details | Static (SSG) | None |
-| Theme toggle | React island | ~2KB |
-| Mobile nav | React island | ~5KB |
-| Contact form | React island | ~3KB |
-| 2D exploration | React island | Lazy loaded |
+| Content Type    | Rendering    | JavaScript  |
+| --------------- | ------------ | ----------- |
+| Pages           | Static (SSG) | None        |
+| Blog posts      | Static (SSG) | None        |
+| Project details | Static (SSG) | None        |
+| Theme toggle    | React island | ~2KB        |
+| Mobile nav      | React island | ~5KB        |
+| Contact form    | React island | ~3KB        |
+| 2D exploration  | React island | Lazy loaded |
 
 ## SEO Strategy
 

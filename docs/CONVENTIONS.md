@@ -2,13 +2,13 @@
 
 ## File Naming
 
-| Type | Convention | Example |
-|------|------------|---------|
-| Astro components | PascalCase.astro | `Header.astro` |
-| React components | PascalCase.tsx | `ThemeToggle.tsx` |
-| Pages | kebab-case.astro | `design-system.astro` |
-| Content files | kebab-case.md | `my-project.md` |
-| Utilities | camelCase.ts | `utils.ts` |
+| Type             | Convention       | Example               |
+| ---------------- | ---------------- | --------------------- |
+| Astro components | PascalCase.astro | `Header.astro`        |
+| React components | PascalCase.tsx   | `ThemeToggle.tsx`     |
+| Pages            | kebab-case.astro | `design-system.astro` |
+| Content files    | kebab-case.md    | `my-project.md`       |
+| Utilities        | camelCase.ts     | `utils.ts`            |
 
 ## Component Organization
 
@@ -17,6 +17,7 @@
 Location: `src/components/astro/`
 
 Use for:
+
 - Headers, footers, navigation links
 - Cards, badges, static content
 - Layout sections
@@ -33,7 +34,7 @@ interface Props {
 const { title, description, href } = Astro.props;
 ---
 
-<a href={href} class="block rounded-lg border p-4 hover:bg-muted">
+<a href={href} class="hover:bg-muted block rounded-lg border p-4">
   <h3 class="font-semibold">{title}</h3>
   <p class="text-muted-foreground">{description}</p>
 </a>
@@ -44,6 +45,7 @@ const { title, description, href } = Astro.props;
 Location: `src/components/react/`
 
 Use for:
+
 - State management (forms, toggles)
 - Event handlers beyond hover/focus
 - Context-dependent shadcn components
@@ -120,30 +122,34 @@ Use theme variables, not raw colors:
 
 Mobile-first approach with two primary breakpoints:
 
-| Breakpoint | Width | Use Case |
-|------------|-------|----------|
-| Default | < 768px | Mobile phones |
-| `md:` | ≥ 768px | Tablets and desktop |
-| `lg:` | ≥ 1024px | Large desktop (optional refinement) |
+| Breakpoint | Width    | Use Case                            |
+| ---------- | -------- | ----------------------------------- |
+| Default    | < 768px  | Mobile phones                       |
+| `md:`      | ≥ 768px  | Tablets and desktop                 |
+| `lg:`      | ≥ 1024px | Large desktop (optional refinement) |
 
 #### Common Patterns
 
 **Grid layouts:**
+
 ```tsx
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 ```
 
 **Typography scaling:**
+
 ```tsx
 <h1 className="text-3xl md:text-5xl lg:text-6xl">
 ```
 
 **Spacing:**
+
 ```tsx
 <div className="px-4 md:px-6 lg:px-8">
 ```
 
 **Show/hide elements:**
+
 ```tsx
 // Hide on mobile, show on desktop
 <nav className="hidden md:flex">
@@ -153,6 +159,7 @@ Mobile-first approach with two primary breakpoints:
 ```
 
 **Flex direction:**
+
 ```tsx
 <div className="flex flex-col md:flex-row">
 ```
@@ -160,6 +167,7 @@ Mobile-first approach with two primary breakpoints:
 #### Mobile Navigation
 
 Use the `MobileMenu` component for navigation on mobile:
+
 - Renders a hamburger icon that opens a Sheet (slide-out drawer)
 - Automatically hidden on `md:` and above via `md:hidden`
 - Desktop nav links use `hidden md:flex`
@@ -173,6 +181,7 @@ Use the `MobileMenu` component for navigation on mobile:
 #### Touch Targets
 
 Ensure touch targets are at least 44x44px on mobile:
+
 ```tsx
 <Button size="icon" className="size-11">
 ```
@@ -183,15 +192,15 @@ Ensure touch targets are at least 44x44px on mobile:
 
 ```yaml
 ---
-title: "Project Name"
-description: "One-line description"
+title: 'Project Name'
+description: 'One-line description'
 featured: true
-techStack: ["Astro", "React", "TypeScript"]
-role: "Full-stack Developer"
+techStack: ['Astro', 'React', 'TypeScript']
+role: 'Full-stack Developer'
 links:
-  demo: "https://example.com"
-  repo: "https://github.com/user/repo"
-image: "./project-screenshot.png"
+  demo: 'https://example.com'
+  repo: 'https://github.com/user/repo'
+image: './project-screenshot.png'
 publishDate: 2024-01-15
 ---
 ```
@@ -200,11 +209,11 @@ publishDate: 2024-01-15
 
 ```yaml
 ---
-title: "Blog Post Title"
-description: "Meta description for SEO"
+title: 'Blog Post Title'
+description: 'Meta description for SEO'
 publishDate: 2024-01-15
 updatedDate: 2024-01-20
-tags: ["astro", "react", "tutorial"]
+tags: ['astro', 'react', 'tutorial']
 draft: false
 ---
 ```
@@ -280,6 +289,7 @@ export function ContactForm() {
 Format: `type: description`
 
 Types:
+
 - `feat:` New feature
 - `fix:` Bug fix
 - `docs:` Documentation

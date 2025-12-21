@@ -74,6 +74,7 @@ Provide a report:
 ## When to Run
 
 Run this command:
+
 - After adding new components
 - After creating new pages
 - After significant refactoring
