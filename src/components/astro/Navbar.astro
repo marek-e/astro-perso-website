@@ -3,6 +3,9 @@ import { ModeToggle } from '@/components/react/ModeToggle';
 import { MobileMenu } from '@/components/react/MobileMenu';
 import { Star } from '@hugeicons/core-free-icons';
 import { Icon } from '@/components/react/Icon';
+
+const linksClasses =
+  'text-foreground/80 hover:text-foreground relative z-10 rounded-lg px-3 py-1.5 text-sm transition-colors';
 ---
 
 <nav class="fixed top-6 left-1/2 z-50 w-fit -translate-x-1/2">
@@ -17,20 +20,16 @@ import { Icon } from '@/components/react/Icon';
       <span>melmayan</span>
     </a>
 
-    <div class="hidden items-center gap-6 md:flex">
-      <a href="/projects" class="text-foreground/80 hover:text-foreground text-sm transition-colors"
-        >Projects</a
+    <div id="nav-links" class="relative hidden items-center gap-1 md:flex">
+      <div
+        id="nav-pill"
+        class="pointer-events-none absolute rounded-lg bg-white/35 opacity-0 shadow-[0_0_12px_rgba(255,255,255,0.3)] transition-all duration-200 ease-out dark:bg-white/15 dark:shadow-[0_0_12px_rgba(255,255,255,0.15)]"
       >
-      <a href="/blog" class="text-foreground/80 hover:text-foreground text-sm transition-colors"
-        >Blog</a
-      >
-      <a
-        href="/design-system"
-        class="text-foreground/80 hover:text-foreground text-sm transition-colors">Design</a
-      >
-      <a href="/contact" class="text-foreground/80 hover:text-foreground text-sm transition-colors"
-        >Contact</a
-      >
+      </div>
+      <a href="/projects" class={linksClasses} data-nav-link>Projects</a>
+      <a href="/blog" class={linksClasses} data-nav-link>Blog</a>
+      <a href="/design-system" class={linksClasses} data-nav-link>Design</a>
+      <a href="/contact" class={linksClasses} data-nav-link>Contact</a>
     </div>
 
     <div class="flex items-center gap-2">
@@ -39,3 +38,32 @@ import { Icon } from '@/components/react/Icon';
     </div>
   </div>
 </nav>
+
+<script>
+  const container = document.getElementById('nav-links');
+  const pill = document.getElementById('nav-pill');
+  const links = document.querySelectorAll('[data-nav-link]');
+
+  if (container && pill) {
+    const updatePill = (el: HTMLElement) => {
+      const containerRect = container.getBoundingClientRect();
+      const linkRect = el.getBoundingClientRect();
+
+      pill.style.width = `${linkRect.width}px`;
+      pill.style.height = `${linkRect.height}px`;
+      pill.style.left = `${linkRect.left - containerRect.left}px`;
+      pill.style.top = `${linkRect.top - containerRect.top}px`;
+      pill.style.opacity = '1';
+    };
+
+    const hidePill = () => {
+      pill.style.opacity = '0';
+    };
+
+    links.forEach((link) => {
+      link.addEventListener('mouseenter', () => updatePill(link as HTMLElement));
+    });
+
+    container.addEventListener('mouseleave', hidePill);
+  }
+</script>
