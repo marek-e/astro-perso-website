@@ -6,6 +6,10 @@ import { Icon } from '@/components/react/Icon';
 import { Home } from '@hugeicons/core-free-icons';
 import { getLangFromUrl, getTranslatedPath, getTranslations } from '@/i18n';
 
+export function getStaticPaths() {
+  return [{ params: { lang: 'en' as const } }, { params: { lang: 'fr' as const } }];
+}
+
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 const translatePath = getTranslatedPath(lang);

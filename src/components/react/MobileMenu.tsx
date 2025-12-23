@@ -13,15 +13,18 @@ import { ModeToggle } from './ModeToggle';
 import { Icon } from './Icon';
 import { Separator } from '../ui/separator';
 import { getNavLinks } from '@/lib/navigation';
-import { getCurrentPath, getLangFromClient, getTranslatedPath, getTranslations } from '@/i18n';
+import { getTranslatedPath, getTranslations, type Lang } from '@/i18n';
 import { LanguageSwitcher } from './LanguageSwitcher';
 
-export function MobileMenu() {
-  const lang = getLangFromClient();
+interface MobileMenuProps {
+  lang: Lang;
+  currentPath: string;
+}
+
+export function MobileMenu({ lang, currentPath }: MobileMenuProps) {
   const t = getTranslations(lang);
   const translatePath = getTranslatedPath(lang);
   const navLinks = getNavLinks(lang);
-  const currentPath = getCurrentPath();
   return (
     <Sheet>
       <SheetTrigger

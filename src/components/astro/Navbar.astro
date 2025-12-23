@@ -50,7 +50,7 @@ const linksClasses =
     </div>
 
     <div class="flex items-center gap-2">
-      <MobileMenu client:load />
+      <MobileMenu client:load lang={lang} currentPath={currentPath} />
       <LanguageSwitcher client:load currentLang={lang} currentPath={currentPath} />
       <ModeToggle client:load />
     </div>
