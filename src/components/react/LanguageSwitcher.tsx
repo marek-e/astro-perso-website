@@ -20,7 +20,7 @@ export function LanguageSwitcher({ currentLang, currentPath, className }: Langua
           key={lang}
           href={getAlternatePath(currentPath, currentLang, lang)}
           className={cn(
-            'rounded-full px-2 py-1 text-xs font-medium transition-colors',
+            'rounded-full px-2 py-1 text-xs font-bold transition-colors',
             lang === currentLang
               ? 'bg-primary text-primary-foreground'
               : 'text-foreground/70 hover:text-foreground hover:bg-primary/20'
