@@ -21,13 +21,13 @@ const linksClasses =
   >
     <a
       href={translatePath('/')}
-      class="text-foreground group/logo flex items-center gap-2 font-semibold transition-all duration-300 ease-in-out hover:-rotate-3 hover:opacity-80 motion-reduce:hover:rotate-0"
+      class="text-foreground group/logo flex items-center gap-2 font-semibold transition-all duration-300 ease-in-out hover:opacity-80 motion-safe:hover:-rotate-3 motion-reduce:hover:underline"
     >
       <Icon
         icon={Star}
         strokeWidth={2}
         fill="currentColor"
-        className="text-primary size-4 transition-transform duration-300 ease-in-out group-hover/logo:rotate-360 motion-reduce:group-hover/logo:animate-none"
+        className="text-primary size-4 transition-transform duration-300 ease-in-out motion-safe:group-hover/logo:rotate-360"
       />
       <span class="inline-block">melmayan</span>
     </a>
