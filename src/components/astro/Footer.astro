@@ -5,10 +5,12 @@ import { Link } from '../ui/button';
 import { Separator } from '../ui/separator';
 import { SOCIALS } from '@/lib/socials';
 import { getTranslations, getLangFromUrl, getTranslatedPath } from '@/i18n';
+import { LanguageSwitcher } from '../react/LanguageSwitcher';
 
 const lang = getLangFromUrl(Astro.url);
 const t = getTranslations(lang);
 const translatePath = getTranslatedPath(lang);
+const currentPath = Astro.url.pathname;
 
 const currentYear = new Date().getFullYear();
 
@@ -67,14 +69,22 @@ const sitemapLinks = [
       © {currentYear} Marek Elmayan
     </p>
 
-    <Link
-      href="#"
-      size="sm"
-      variant="link"
-      className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-    >
-      {t.footer.backToTop}
-      <Icon icon={ArrowUp04Icon} strokeWidth={2} className="size-4" data-icon="inline-end" />
-    </Link>
+    <div class="flex items-center gap-4">
+      <LanguageSwitcher
+        client:load
+        currentLang={lang}
+        currentPath={currentPath}
+        className="bg-background"
+      />
+      <Link
+        href="#"
+        size="sm"
+        variant="link"
+        className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+      >
+        {t.footer.backToTop}
+        <Icon icon={ArrowUp04Icon} strokeWidth={2} className="size-4" data-icon="inline-end" />
+      </Link>
+    </div>
   </div>
 </footer>

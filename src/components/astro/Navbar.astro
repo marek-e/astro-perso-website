@@ -1,7 +1,6 @@
 ---
 import { ModeToggle } from '@/components/react/ModeToggle';
 import { MobileMenu } from '@/components/react/MobileMenu';
-import { LanguageSwitcher } from '@/components/react/LanguageSwitcher';
 import { Star } from '@hugeicons/core-free-icons';
 import { Icon } from '@/components/react/Icon';
 import { getNavLinks } from '@/lib/navigation';
@@ -51,7 +50,6 @@ const linksClasses =
 
     <div class="flex items-center gap-2">
       <MobileMenu client:load lang={lang} currentPath={currentPath} />
-      <LanguageSwitcher client:load currentLang={lang} currentPath={currentPath} />
       <ModeToggle client:load />
     </div>
   </div>
