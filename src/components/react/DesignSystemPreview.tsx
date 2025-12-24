@@ -38,9 +38,17 @@ import {
   SelectContent,
   SelectItem,
 } from '@/components/ui/select';
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+import { Field, FieldLabel, FieldDescription, FieldError, FieldGroup } from '@/components/ui/field';
+import {
+  InputGroup,
+  InputGroupInput,
+  InputGroupAddon,
+  InputGroupButton,
+} from '@/components/ui/input-group';
 import { ModeToggle } from './ModeToggle';
 import { Icon } from './Icon';
-import { ArrowLeftIcon } from '@hugeicons/core-free-icons';
+import { ArrowLeftIcon, Search01Icon, Mail01Icon } from '@hugeicons/core-free-icons';
 import { getTranslatedPath, type Lang } from '@/i18n';
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -260,6 +268,77 @@ export function DesignSystemPreview({ lang }: { lang: Lang }) {
             <span>Item 2</span>
             <Separator orientation="vertical" />
             <span>Item 3</span>
+          </div>
+        </div>
+      </Section>
+
+      {/* Tooltip */}
+      <Section title="Tooltip">
+        <div className="flex flex-wrap gap-6">
+          <Tooltip>
+            <TooltipTrigger render={<Button variant="outline">Hover me (top)</Button>} />
+            <TooltipContent side="top">Tooltip on top</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button variant="outline">Hover me (bottom)</Button>} />
+            <TooltipContent side="bottom">Tooltip on bottom</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button variant="outline">Hover me (left)</Button>} />
+            <TooltipContent side="left">Tooltip on left</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger render={<Button variant="outline">Hover me (right)</Button>} />
+            <TooltipContent side="right">Tooltip on right</TooltipContent>
+          </Tooltip>
+        </div>
+      </Section>
+
+      {/* Field */}
+      <Section title="Field">
+        <div className="grid gap-6 md:grid-cols-2">
+          <FieldGroup>
+            <Field>
+              <FieldLabel htmlFor="field-email">Email address</FieldLabel>
+              <Input id="field-email" type="email" placeholder="you@example.com" />
+              <FieldDescription>We'll never share your email.</FieldDescription>
+            </Field>
+            <Field>
+              <FieldLabel htmlFor="field-password">Password</FieldLabel>
+              <Input id="field-password" type="password" placeholder="••••••••" />
+            </Field>
+          </FieldGroup>
+          <FieldGroup>
+            <Field data-invalid="true">
+              <FieldLabel htmlFor="field-error">With error</FieldLabel>
+              <Input id="field-error" aria-invalid="true" defaultValue="invalid@" />
+              <FieldError>Please enter a valid email address.</FieldError>
+            </Field>
+          </FieldGroup>
+        </div>
+      </Section>
+
+      {/* InputGroup */}
+      <Section title="InputGroup">
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="space-y-4">
+            <p className="text-muted-foreground mb-2 text-sm font-medium">With icon addon</p>
+            <InputGroup>
+              <InputGroupAddon align="inline-start">
+                <Icon icon={Search01Icon} className="size-4" />
+              </InputGroupAddon>
+              <InputGroupInput placeholder="Search..." />
+            </InputGroup>
+          </div>
+          <div className="space-y-4">
+            <p className="text-muted-foreground mb-2 text-sm font-medium">With button</p>
+            <InputGroup>
+              <InputGroupAddon align="inline-start">
+                <Icon icon={Mail01Icon} className="size-4" />
+              </InputGroupAddon>
+              <InputGroupInput placeholder="Enter email..." />
+              <InputGroupButton>Subscribe</InputGroupButton>
+            </InputGroup>
           </div>
         </div>
       </Section>

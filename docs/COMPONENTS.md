@@ -2,24 +2,29 @@
 
 ## Overview
 
-This project uses shadcn/ui components built on Radix primitives. Components are in `src/components/ui/`.
+This project uses shadcn/ui components built on Base UI primitives. Components are in `src/components/ui/`, with custom Astro and React components in their respective directories.
+A design system page is present at `/[lang]/design-system`.
+This page is generated automatically by the `DesignSystemPreview` component inside the `src/pages/design-system.astro` file.
 
 ## Available Components
 
-| Component     | Type              | Context Required | Notes                     |
-| ------------- | ----------------- | ---------------- | ------------------------- |
-| Button        | Static-safe       | No               | Can use directly in Astro |
-| Badge         | Static-safe       | No               | Can use directly in Astro |
-| Card          | Static-safe       | No               | Can use directly in Astro |
-| Input         | Static-safe       | No               | Can use directly in Astro |
-| Textarea      | Static-safe       | No               | Can use directly in Astro |
-| Label         | Static-safe       | No               | Can use directly in Astro |
-| Separator     | Static-safe       | No               | Can use directly in Astro |
-| Alert Dialog  | **Needs wrapper** | Yes              | Wrap in React component   |
-| Dropdown Menu | **Needs wrapper** | Yes              | Wrap in React component   |
-| Select        | **Needs wrapper** | Yes              | Wrap in React component   |
-| Combobox      | **Needs wrapper** | Yes              | Wrap in React component   |
-| Sheet         | **Needs wrapper** | Yes              | Wrap in React component   |
+| Component     | Type              | Context Required | Notes                        |
+| ------------- | ----------------- | ---------------- | ---------------------------- |
+| Button        | Static-safe       | No               | Can use directly in Astro    |
+| Badge         | Static-safe       | No               | Can use directly in Astro    |
+| Card          | Static-safe       | No               | Can use directly in Astro    |
+| Input         | Static-safe       | No               | Can use directly in Astro    |
+| Textarea      | Static-safe       | No               | Can use directly in Astro    |
+| Label         | Static-safe       | No               | Can use directly in Astro    |
+| Separator     | Static-safe       | No               | Can use directly in Astro    |
+| Field         | Static-safe       | No               | Form field layout primitives |
+| InputGroup    | Static-safe       | No               | Input with addons/buttons    |
+| Alert Dialog  | **Needs wrapper** | Yes              | Wrap in React component      |
+| Dropdown Menu | **Needs wrapper** | Yes              | Wrap in React component      |
+| Select        | **Needs wrapper** | Yes              | Wrap in React component      |
+| Combobox      | **Needs wrapper** | Yes              | Wrap in React component      |
+| Sheet         | **Needs wrapper** | Yes              | Wrap in React component      |
+| Tooltip       | **Needs wrapper** | Yes              | Uses Base UI, wrap in React  |
 
 ## Adding New Components
 
@@ -248,3 +253,136 @@ import { Star } from '@hugeicons/core-free-icons';
 
 <Icon icon={Star} className="size-5" />
 ```
+
+### LanguageSwitcher
+
+Pill-shaped language toggle with active state highlighting.
+
+```astro
+<LanguageSwitcher client:load currentLang="fr" currentPath={Astro.url.pathname} />
+```
+
+- Glass-morphism styling with backdrop blur
+- Active language highlighted with primary color
+- Uses `aria-current="page"` for accessibility
+
+### BookmarkLanguageToggle
+
+Fixed bookmark-style language toggle with tooltip.
+
+```astro
+<BookmarkLanguageToggle client:load currentLang="fr" currentPath={Astro.url.pathname} />
+```
+
+- Fixed position at top-right of viewport
+- Expands on hover to reveal flag icon
+- 3D shadow and glass highlight effects
+- Includes tooltip with localized label
+- Respects `prefers-reduced-motion`
+- Hidden on mobile (`md:flex`)
+
+### TimelineCards
+
+Scroll-driven timeline with 3D card animations.
+
+```astro
+<TimelineCards client:visible entries={timelineEntries} lang="fr" presentLabel="Aujourd'hui" />
+```
+
+- Alternating left/right layout on desktop
+- Single column with vertical line on mobile
+- 3D perspective transforms on scroll
+- Animated curved SVG path with glowing dot
+- Respects `prefers-reduced-motion`
+- Supports education and work entry types
+
+## Astro Components
+
+Located in `src/components/astro/`:
+
+### CursorSpotlight
+
+Adds a radial gradient spotlight effect that follows the cursor.
+
+```astro
+---
+import CursorSpotlight from '@/components/astro/CursorSpotlight.astro';
+---
+
+<CursorSpotlight>
+  <div>Content with spotlight effect</div>
+</CursorSpotlight>
+```
+
+- Uses CSS custom properties for cursor position
+- Gradient uses theme `--primary` color
+- Disabled for `prefers-reduced-motion`
+- Disabled for touch devices (`pointer: coarse`)
+- Supports View Transitions via `astro:after-swap`
+
+## Additional UI Primitives
+
+### Tooltip
+
+Tooltip built on Base UI (not Radix). Requires React context.
+
+```tsx
+import { Tooltip, TooltipTrigger, TooltipContent } from '@/components/ui/tooltip';
+
+<Tooltip>
+  <TooltipTrigger render={<button>Hover me</button>} />
+  <TooltipContent side="top">Tooltip text</TooltipContent>
+</Tooltip>;
+```
+
+- `side`: top | bottom | left | right
+- `sideOffset`: distance from trigger
+- `align`: start | center | end
+- Includes arrow pointer
+
+### Field
+
+Form field layout components for labels, descriptions, and errors.
+
+```tsx
+import { Field, FieldLabel, FieldDescription, FieldError, FieldGroup } from '@/components/ui/field';
+
+<FieldGroup>
+  <Field>
+    <FieldLabel htmlFor="email">Email</FieldLabel>
+    <Input id="email" type="email" />
+    <FieldDescription>We'll never share your email.</FieldDescription>
+    <FieldError>Invalid email address</FieldError>
+  </Field>
+</FieldGroup>;
+```
+
+- Supports `orientation`: vertical | horizontal | responsive
+- Automatic invalid state styling
+- Nested field groups with proper spacing
+
+### InputGroup
+
+Input with inline addons, buttons, or icons.
+
+```tsx
+import {
+  InputGroup,
+  InputGroupInput,
+  InputGroupAddon,
+  InputGroupButton,
+} from '@/components/ui/input-group';
+
+<InputGroup>
+  <InputGroupAddon align="inline-start">
+    <SearchIcon />
+  </InputGroupAddon>
+  <InputGroupInput placeholder="Search..." />
+  <InputGroupButton>Go</InputGroupButton>
+</InputGroup>;
+```
+
+- `align`: inline-start | inline-end | block-start | block-end
+- Supports buttons, icons, and text addons
+- Focus ring on input focus
+- Invalid state styling

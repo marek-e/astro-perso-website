@@ -18,7 +18,7 @@ const { lang } = Astro.params;
 const t = getTranslations(lang);
 ---
 
-<Layout title={t.hero.headline} description={t.hero.subtitle}>
+<Layout title={t.hero.pageTitle} description={t.hero.pageDescription}>
   <Navbar />
   <main>
     <Hero />
