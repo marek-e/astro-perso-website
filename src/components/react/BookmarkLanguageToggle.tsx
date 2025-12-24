@@ -22,7 +22,8 @@ export function BookmarkLanguageToggle({ currentLang, currentPath }: BookmarkLan
         'w-11 flex-col items-center justify-end rounded-b-2xl pb-2',
         'group from-primary/80 to-primary/50 cursor-pointer bg-linear-to-b shadow-lg',
         'border-primary border',
-        'h-6 transition-all duration-300 ease-out',
+        'h-6 transition-all duration-500',
+        'ease-[linear(0,0.1144,0.3475,0.5885,0.7844,0.9194,0.9987,1.0359,1.046,1.0413,1.0308,1.0196,1.0104,1.004,1.0002,0.9984,1)]',
         'motion-safe:hover:h-12',
         'motion-reduce:h-12',
         // Focus state
@@ -35,11 +36,12 @@ export function BookmarkLanguageToggle({ currentLang, currentPath }: BookmarkLan
           render={
             <div
               className={cn(
-                'relative size-7 overflow-hidden rounded-full',
+                'relative size-6 overflow-hidden rounded-full',
                 // 3D effect - shadow for depth
                 'shadow-[0_2px_4px_rgba(0,0,0,0.3),inset_0_-2px_4px_rgba(0,0,0,0.15)]',
-                // Animation
-                'transition-all duration-300 ease-out',
+                // Animation with spring
+                'transition-all duration-500',
+                'ease-[linear(0,0.1144,0.3475,0.5885,0.7844,0.9194,0.9987,1.0359,1.046,1.0413,1.0308,1.0196,1.0104,1.004,1.0002,0.9984,1)]',
                 'motion-safe:scale-75 motion-safe:opacity-0',
                 'motion-safe:group-hover:scale-100 motion-safe:group-hover:opacity-100',
                 // Reduced motion: always visible
