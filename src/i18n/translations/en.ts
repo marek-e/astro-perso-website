@@ -95,4 +95,16 @@ export const en: UITranslations = {
     },
     present: 'Present',
   },
+  blog: {
+    pageTitle: 'Blog | Marek Elmayan',
+    pageDescription: 'Articles about web development, coding, and tech',
+    title: 'Blog',
+    subtitle: 'Thoughts on code, design, and building for the web.',
+    readMore: 'Read more',
+    backToBlog: 'Back to all posts',
+    publishedOn: 'Published on',
+    updatedOn: 'Updated on',
+    minRead: 'min read',
+    noPosts: 'No posts yet. Check back soon!',
+  },
 };

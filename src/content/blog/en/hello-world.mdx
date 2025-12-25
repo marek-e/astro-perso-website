@@ -1,0 +1,67 @@
+---
+title: "Hello World: Welcome to My Blog"
+description: "My first blog post where I introduce myself and share a quick code snippet to kick things off."
+publishDate: 2024-12-25
+tags: ["intro", "astro", "web-dev"]
+draft: false
+---
+
+Welcome to my blog! I'm excited to finally have a space where I can share my thoughts on web development, coding adventures, and lessons learned along the way.
+
+## Why Start a Blog?
+
+I've been building things for the web for a while now, and I've always found that **writing helps me think**. Whether it's documenting a tricky bug I solved or exploring a new technology, putting thoughts into words solidifies my understanding.
+
+Plus, if something helped me, maybe it'll help you too.
+
+## A Quick Code Snippet
+
+Since this is a developer blog, let's kick things off with some code. Here's a simple function that greets the world in style:
+
+```typescript
+function greet(name: string): string {
+  const greeting = `Hello, ${name}!`;
+  console.log(greeting);
+  return greeting;
+}
+
+greet('World');
+```
+
+And here's how you might use this in a React component:
+
+```tsx
+import { useState } from 'react';
+
+export function Greeter() {
+  const [name, setName] = useState('World');
+
+  return (
+    <div className="p-4 rounded-lg bg-card">
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="border rounded px-3 py-2"
+        placeholder="Enter your name"
+      />
+      <p className="mt-4 text-xl font-bold">
+        Hello, {name}!
+      </p>
+    </div>
+  );
+}
+```
+
+## What's Next?
+
+I'll be writing about:
+
+- **Modern web development** with tools like Astro, React, and TypeScript
+- **Design systems** and building reusable components
+- **Performance optimization** tips and tricks
+- **Lessons learned** from real-world projects
+
+Stay tuned, and feel free to reach out if there's a topic you'd like me to cover.
+
+See you in the next post!

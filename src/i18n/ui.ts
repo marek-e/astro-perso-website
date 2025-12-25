@@ -89,4 +89,16 @@ export interface UITranslations {
     };
     present: string;
   };
+  blog: {
+    pageTitle: string;
+    pageDescription: string;
+    title: string;
+    subtitle: string;
+    readMore: string;
+    backToBlog: string;
+    publishedOn: string;
+    updatedOn: string;
+    minRead: string;
+    noPosts: string;
+  };
 }

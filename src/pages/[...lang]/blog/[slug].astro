@@ -1,0 +1,178 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import Navbar from '@/components/astro/Navbar.astro';
+import Footer from '@/components/astro/Footer.astro';
+import { Badge } from '@/components/ui/badge';
+import { getCollection, render } from 'astro:content';
+import { getTranslations, defaultLang } from '@/i18n';
+import { getTranslatedPath } from '@/i18n/config';
+import { mdxComponents } from '@/components/mdx';
+import { Separator } from '@/components/ui/separator';
+import { formatDate, estimateReadingTime } from '@/lib/blog';
+import { Icon } from '@/components/react/Icon';
+import { ArrowLeft02Icon, Link02Icon } from '@hugeicons/core-free-icons';
+import { Link } from '@/components/ui/button';
+
+type BlogPost = Awaited<ReturnType<typeof getCollection<'blog'>>>[number];
+
+type StaticPaths = {
+  params: {
+    lang: 'en' | undefined;
+    slug: string;
+  };
+  props: {
+    post: BlogPost;
+  };
+};
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  const staticPaths: StaticPaths[] = [];
+  posts.forEach((post) => {
+    const [lang, slug] = post.id.split('/');
+
+    if (lang === 'en') {
+      staticPaths.push({ params: { lang: 'en', slug }, props: { post } });
+    }
+    staticPaths.push({ params: { lang: undefined, slug }, props: { post } });
+  });
+  return staticPaths;
+}
+
+type Props = {
+  post: BlogPost;
+};
+
+const { post } = Astro.props;
+
+const lang = Astro.params.lang ?? defaultLang;
+const t = getTranslations(lang);
+const translatePath = getTranslatedPath(lang);
+
+const { Content } = await render(post);
+
+const readingTime = estimateReadingTime(post.body ?? '');
+---
+
+<Layout title={`${post.data.title} | ${t.blog.title}`} description={post.data.description}>
+  <Navbar />
+  <main class="container mx-auto max-w-5xl px-4 pt-32 pb-8">
+    <article>
+      <header class="mb-10 space-y-4">
+        <div class="text-muted-foreground flex flex-wrap items-center gap-16 text-sm">
+          <time datetime={post.data.publishDate.toISOString()}>
+            {t.blog.publishedOn}
+            <span class="font-semibold">{formatDate(post.data.publishDate, lang)}</span>
+          </time>
+          <span>{readingTime} {t.blog.minRead}</span>
+        </div>
+
+        <h1 class="group text-4xl font-bold tracking-tight lg:text-5xl">
+          <a
+            href={translatePath(`/blog/${post.id.split('/').pop()}`)}
+            class="text-primary hover:text-primary/80"
+          >
+            {post.data.title}
+          </a>
+          <span
+            class="text-primary/80 ml-2 inline-flex items-center opacity-0 transition-opacity group-hover:opacity-100"
+          >
+            <Icon icon={Link02Icon} strokeWidth={2} className="size-6" />
+          </span>
+        </h1>
+      </header>
+
+      <p class="text-muted-foreground mb-8 text-lg">
+        {post.data.description}
+      </p>
+      {
+        post.data.tags.length > 0 && (
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.map((tag) => (
+              <Badge variant="secondary">{tag}</Badge>
+            ))}
+          </div>
+        )
+      }
+
+      {
+        post.data.updatedDate && (
+          <p class="text-muted-foreground text-sm italic">
+            {t.blog.updatedOn} {formatDate(post.data.updatedDate, lang)}
+          </p>
+        )
+      }
+    </article>
+    <Separator className="my-8" />
+
+    <div class="prose prose-neutral dark:prose-invert max-w-none">
+      <Content components={mdxComponents} />
+    </div>
+
+    <hr class="border-border my-8" />
+
+    <Link href={translatePath('/blog')} variant="link">
+      <Icon icon={ArrowLeft02Icon} strokeWidth={2} className="size-4" />
+      {t.blog.backToBlog}
+    </Link>
+  </main>
+</Layout>
+<Footer />
+
+<style is:global>
+  .prose {
+    --tw-prose-body: var(--color-foreground);
+    --tw-prose-headings: var(--color-foreground);
+    --tw-prose-links: var(--color-primary);
+    --tw-prose-bold: var(--color-foreground);
+    --tw-prose-counters: var(--color-muted-foreground);
+    --tw-prose-bullets: var(--color-muted-foreground);
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-quotes: var(--color-foreground);
+    --tw-prose-quote-borders: var(--color-border);
+    --tw-prose-captions: var(--color-muted-foreground);
+    --tw-prose-code: var(--color-foreground);
+    --tw-prose-pre-code: var(--color-foreground);
+    --tw-prose-pre-bg: var(--color-card);
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
+  }
+
+  .prose a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .prose a:hover {
+    color: oklch(from var(--color-primary) l c h / 0.8);
+  }
+
+  .prose h1 a,
+  .prose h2 a,
+  .prose h3 a,
+  .prose h4 a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .prose h1 a:hover,
+  .prose h2 a:hover,
+  .prose h3 a:hover,
+  .prose h4 a:hover {
+    color: inherit;
+  }
+
+  .prose code:not(pre code) {
+    background-color: var(--color-muted);
+    padding: 0.2em 0.4em;
+    border-radius: 0.25rem;
+    font-size: 0.875em;
+  }
+
+  .prose pre {
+    margin: 0;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+  }
+</style>

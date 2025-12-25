@@ -96,4 +96,16 @@ export const fr: UITranslations = {
     },
     present: "Aujourd'hui",
   },
+  blog: {
+    pageTitle: 'Blog | Marek Elmayan',
+    pageDescription: 'Articles sur le développement web, le code et la tech',
+    title: 'Blog',
+    subtitle: 'Réflexions sur le code, le design et le développement web.',
+    readMore: 'Lire la suite',
+    backToBlog: 'Retour à tous les articles',
+    publishedOn: 'Publié le',
+    updatedOn: 'Mis à jour le',
+    minRead: 'min de lecture',
+    noPosts: "Pas encore d'articles. Revenez bientôt !",
+  },
 };

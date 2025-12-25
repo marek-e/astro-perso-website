@@ -1,0 +1,65 @@
+---
+title: 'Hello World : Bienvenue sur mon blog'
+description: 'Mon premier article de blog pour me présenter et partager un petit bout de code pour bien commencer.'
+publishDate: 2024-12-25
+tags: ['intro', 'astro', 'web-dev']
+draft: false
+---
+
+Bienvenue sur mon blog ! Je suis ravi d'avoir enfin un espace pour partager mes réflexions sur le développement web, mes aventures de codeur et les leçons apprises en chemin.
+
+## Pourquoi lancer un blog ?
+
+Je construis des choses pour le web depuis un moment maintenant, et j'ai toujours trouvé que **l'écriture m'aide à réfléchir**. Que ce soit pour documenter un bug compliqué que j'ai résolu ou explorer une nouvelle technologie, mettre mes pensées en mots solidifie ma compréhension.
+
+Et puis, si quelque chose m'a aidé, peut-être que ça vous aidera aussi.
+
+## Un petit bout de code
+
+Puisque c'est un blog de développeur, commençons avec du code. Voici une fonction simple qui salue le monde avec style :
+
+```typescript
+function greet(name: string): string {
+  const greeting = `Bonjour, ${name} !`;
+  console.log(greeting);
+  return greeting;
+}
+
+greet('le monde');
+```
+
+Et voici comment vous pourriez utiliser cela dans un composant React :
+
+```tsx
+import { useState } from 'react';
+
+export function Greeter() {
+  const [name, setName] = useState('le monde');
+
+  return (
+    <div className="bg-card rounded-lg p-4">
+      <input
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="rounded border px-3 py-2"
+        placeholder="Entrez votre nom"
+      />
+      <p className="mt-4 text-xl font-bold">Bonjour, {name} !</p>
+    </div>
+  );
+}
+```
+
+## Et maintenant ?
+
+Je vais écrire sur :
+
+- **Le développement web moderne** avec des outils comme Astro, React et TypeScript
+- **Les design systems** et la création de composants réutilisables
+- **L'optimisation des performances** avec des astuces et conseils
+- **Les leçons apprises** sur des projets réels
+
+Restez connectés, et n'hésitez pas à me contacter si vous souhaitez que j'aborde un sujet en particulier.
+
+À bientôt dans le prochain article !
