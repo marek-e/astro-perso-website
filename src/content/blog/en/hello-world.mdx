@@ -1,12 +1,14 @@
 ---
-title: "Hello World: Welcome to My Blog"
-description: "My first blog post where I introduce myself and share a quick code snippet to kick things off."
+title: 'Hello World: Welcome to My Blog'
+description: 'My first blog post where I introduce myself and share a quick code snippet to kick things off.'
 publishDate: 2024-12-25
-tags: ["intro", "astro", "web-dev"]
+tags: ['intro', 'astro', 'web-dev']
 draft: false
 ---
 
 Welcome to my blog! I'm excited to finally have a space where I can share my thoughts on web development, coding adventures, and lessons learned along the way.
+
+Learn <Highlight color="red">JavaScript</Highlight>, <Highlight color="blue">TypeScript</Highlight> and <Highlight color="green">Node.js</Highlight> through various articles and videos.
 
 ## Why Start a Blog?
 
@@ -37,17 +39,15 @@ export function Greeter() {
   const [name, setName] = useState('World');
 
   return (
-    <div className="p-4 rounded-lg bg-card">
+    <div className="bg-card rounded-lg p-4">
       <input
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
-        className="border rounded px-3 py-2"
+        className="rounded border px-3 py-2"
         placeholder="Enter your name"
       />
-      <p className="mt-4 text-xl font-bold">
-        Hello, {name}!
-      </p>
+      <p className="mt-4 text-xl font-bold">Hello, {name}!</p>
     </div>
   );
 }
