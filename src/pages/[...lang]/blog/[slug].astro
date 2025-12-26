@@ -179,6 +179,17 @@ const readingTime = estimateReadingTime(post.body ?? '');
     border: none;
   }
 
+  html.dark .prose pre[style*='--shiki-dark-bg'] {
+    background: var(--shiki-dark-bg) !important;
+  }
+
+  html.dark .prose pre[style*='--shiki-dark-bg'] span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+
   .prose mark {
     background-color: transparent;
     padding: 0;
