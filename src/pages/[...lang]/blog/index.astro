@@ -8,7 +8,7 @@ import { getTranslations, defaultLang } from '@/i18n';
 import { getTranslatedPath } from '@/i18n/config';
 import { ArrowRight02Icon } from '@hugeicons/core-free-icons';
 import { Icon } from '@/components/react/Icon';
-import { formatDate, getSlug, estimateReadingTime } from '@/lib/blog';
+import { formatDate, getSlug, estimateReadingTime, getTagColor } from '@/lib/blog';
 
 export function getStaticPaths() {
   return [{ params: { lang: undefined } }, { params: { lang: 'en' } as const }];
@@ -57,7 +57,7 @@ const posts = allPosts
                     {post.data.tags.length > 0 && (
                       <div class="flex flex-wrap gap-1.5">
                         {post.data.tags.map((tag) => (
-                          <Badge variant="secondary" className="text-xs">
+                          <Badge variant={getTagColor(tag)} className="text-xs">
                             {tag}
                           </Badge>
                         ))}

@@ -1,5 +1,24 @@
 import type { Lang } from '@/i18n/config';
 
+const pastelVariants = [
+  'pastel-blue-outline',
+  'pastel-green-outline',
+  'pastel-yellow-outline',
+  'pastel-pink-outline',
+  'pastel-purple-outline',
+  'pastel-orange-outline',
+  'pastel-teal-outline',
+  'pastel-rose-outline',
+] as const;
+
+/**
+ * Get a consistent pastel color variant for a tag based on its name
+ */
+export function getTagColor(tag: string) {
+  const hash = tag.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return pastelVariants[hash % pastelVariants.length];
+}
+
 /**
  * Format a date according to the specified locale
  */
